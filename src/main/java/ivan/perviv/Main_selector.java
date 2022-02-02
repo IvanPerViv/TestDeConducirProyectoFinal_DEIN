@@ -1,20 +1,21 @@
 package ivan.perviv;
 
 import com.sun.tools.javac.Main;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.net.URL;
-import javax.swing.JRootPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 /**
  *
  * @author Iván Pérez
  */
-public class Main_selector extends javax.swing.JFrame {
+public class Main_selector extends JFrame {
+
+    protected Image imagenIconito;
 
     public Main_selector() {
         initComponents();
+        imagenIconito = getIconImage();
         setLocationRelativeTo(null);
     }
 
@@ -50,11 +51,21 @@ public class Main_selector extends javax.swing.JFrame {
         botonSelector.setText("Elegir preguntas...");
         botonSelector.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonSelector.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonSelector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSelectorActionPerformed(evt);
+            }
+        });
 
         botonEmpezar.setFont(new java.awt.Font("Perpetua", 1, 16)); // NOI18N
         botonEmpezar.setText("Empezar");
         botonEmpezar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEmpezar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonEmpezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEmpezarActionPerformed(evt);
+            }
+        });
 
         botonAyuda.setText("?");
         botonAyuda.setToolTipText("Ayuda.");
@@ -115,6 +126,18 @@ public class Main_selector extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSelectorActionPerformed
+        ////// BOTON SELECTOR DE PREGUNTAS /////
+
+
+    }//GEN-LAST:event_botonSelectorActionPerformed
+
+    private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed
+        /////// BOTON EMPEZAR TEST ///////
+        new Panel_respuestas(imagenIconito).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonEmpezarActionPerformed
 
     /**
      * @param args the command line arguments
