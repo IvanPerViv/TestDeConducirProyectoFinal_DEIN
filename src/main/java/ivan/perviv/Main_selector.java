@@ -137,6 +137,7 @@ public class Main_selector extends JFrame {
         /////// BOTON EMPEZAR TEST ///////
         new Panel_respuestas(imagenIconito).setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_botonEmpezarActionPerformed
 
     /**
