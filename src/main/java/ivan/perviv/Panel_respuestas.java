@@ -1,6 +1,8 @@
 package ivan.perviv;
 
 import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -9,11 +11,37 @@ import javax.swing.*;
 public class Panel_respuestas extends JFrame {
 
     protected Image imagenIconito;
+    protected File archivoPreguntas;
+    protected ConexionBBDD con;
+
+    protected ArrayList<Pregunta> listapreguntas;
+    protected int numeroPregunta = 0;
     
-    public Panel_respuestas(Image imagenIconito) {
+    public Panel_respuestas(Image imagenIconito, File archivoPreguntas) {
+
         this.imagenIconito = imagenIconito;
+        this.archivoPreguntas = archivoPreguntas;
+
         initComponents();
         setLocationRelativeTo(null);
+
+        ////// DEVUELVE LAS PREGUNTAS ///////
+        con = new ConexionBBDD(archivoPreguntas);
+        listapreguntas = con.ConexionBBDD();
+        escribirPyR();
+
+    }
+
+    public void escribirPyR() {
+        Pregunta preg = listapreguntas.get(numeroPregunta);
+        numPregunta.setText(String.valueOf(numeroPregunta + 1));
+        preguntaTest.setText("<html>" + preg.getPregunta() + "</html>");
+        
+        respUno.setText("<html>" + preg.getRespuestaUno() + "</html>");
+        respDos.setText("<html>" + preg.getRespuestaDos() + "</html>");
+        respTres.setText("<html>" + preg.getRespuestaTres() + "</html>");
+        respCuatro.setText("<html>" + preg.getRespuestaCuatro() + "</html>");
+
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +50,7 @@ public class Panel_respuestas extends JFrame {
 
         buttonGroupRespuestas = new javax.swing.ButtonGroup();
         titulo = new javax.swing.JLabel();
-        numeroPregunta = new javax.swing.JLabel();
+        numPregunta = new javax.swing.JLabel();
         preguntaTest = new javax.swing.JLabel();
         respUno = new javax.swing.JRadioButton();
         respDos = new javax.swing.JRadioButton();
@@ -44,11 +72,11 @@ public class Panel_respuestas extends JFrame {
         titulo.setText("PREGUNTAS");
         getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 50));
 
-        numeroPregunta.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        numeroPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numeroPregunta.setText("1");
-        numeroPregunta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(numeroPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 90, 80));
+        numPregunta.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        numPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numPregunta.setText("1");
+        numPregunta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 90, 80));
 
         preguntaTest.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         preguntaTest.setText("PREGUNTA DEL TEST DE CONDUCIR");
@@ -99,7 +127,7 @@ public class Panel_respuestas extends JFrame {
     private javax.swing.ButtonGroup buttonGroupRespuestas;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JLabel numeroPregunta;
+    private javax.swing.JLabel numPregunta;
     private javax.swing.JLabel preguntaTest;
     private javax.swing.JRadioButton respCuatro;
     private javax.swing.JRadioButton respDos;

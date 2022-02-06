@@ -2,6 +2,7 @@ package ivan.perviv;
 
 import com.sun.tools.javac.Main;
 import java.awt.*;
+import java.io.*;
 import java.net.URL;
 import javax.swing.*;
 
@@ -12,6 +13,7 @@ import javax.swing.*;
 public class Main_selector extends JFrame {
 
     protected Image imagenIconito;
+    protected File archivoPreguntas;
 
     public Main_selector() {
         initComponents();
@@ -129,15 +131,25 @@ public class Main_selector extends JFrame {
 
     private void botonSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSelectorActionPerformed
         ////// BOTON SELECTOR DE PREGUNTAS /////
+        JFileChooser fc = new JFileChooser();
+        int numero = fc.showOpenDialog(this);
+
+        if (numero == JFileChooser.APPROVE_OPTION) {
+            archivoPreguntas = fc.getSelectedFile();
+            JOptionPane.showMessageDialog(this, "Archivo cargado.");
+        }
 
 
     }//GEN-LAST:event_botonSelectorActionPerformed
 
     private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed
         /////// BOTON EMPEZAR TEST ///////
-        new Panel_respuestas(imagenIconito).setVisible(true);
-        dispose();
-        
+        if (archivoPreguntas != null) {
+            new Panel_respuestas(imagenIconito, archivoPreguntas).setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showConfirmDialog(this, "No has cogido las preguntas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_botonEmpezarActionPerformed
 
     /**
@@ -148,7 +160,8 @@ public class Main_selector extends JFrame {
             //UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf());
             UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
         } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(Main_selector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main_selector.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
