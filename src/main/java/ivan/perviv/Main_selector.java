@@ -138,8 +138,6 @@ public class Main_selector extends JFrame {
             archivoPreguntas = fc.getSelectedFile();
             JOptionPane.showMessageDialog(this, "Archivo cargado.");
         }
-
-
     }//GEN-LAST:event_botonSelectorActionPerformed
 
     private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed

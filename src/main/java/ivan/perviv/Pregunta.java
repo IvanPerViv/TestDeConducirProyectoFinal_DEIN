@@ -6,22 +6,22 @@ import java.io.Serializable;
  *
  * @author Iván Pérez
  */
-public class Pregunta {
-
-    protected String pregunta, respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, respuestaCorrecta;
+public class Pregunta implements Serializable {
 
     protected int id;
+    protected String pregunta;
+    protected Respuesta respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, respuestaCorrecta;
 
-    public Pregunta(int id, String pregunta, String respuestaUno, String respuestaDos, String respuestaTres, String respuestaCuatro) {
+    public Pregunta(int id, String pregunta, Respuesta respuestaUno, Respuesta respuestaDos, Respuesta respuestaTres, Respuesta respuestaCuatro, Respuesta respuestaCorrecta) {
         this.id = id;
         this.pregunta = pregunta;
         this.respuestaUno = respuestaUno;
         this.respuestaDos = respuestaDos;
         this.respuestaTres = respuestaTres;
         this.respuestaCuatro = respuestaCuatro;
+        this.respuestaCorrecta = respuestaCorrecta;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="METODOS Getters">
     public int getId() {
         return id;
     }
@@ -30,23 +30,26 @@ public class Pregunta {
         return pregunta;
     }
 
-    public String getRespuestaUno() {
+    public Respuesta getRespuestaUno() {
         return respuestaUno;
     }
 
-    public String getRespuestaDos() {
+    public Respuesta getRespuestaDos() {
         return respuestaDos;
     }
 
-    public String getRespuestaTres() {
+    public Respuesta getRespuestaTres() {
         return respuestaTres;
     }
 
-    public String getRespuestaCuatro() {
+    public Respuesta getRespuestaCuatro() {
         return respuestaCuatro;
     }
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="METODOS Setters">
+
+    public Respuesta getRespuestaCorrecta() {
+        return respuestaCorrecta;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -55,20 +58,27 @@ public class Pregunta {
         this.pregunta = pregunta;
     }
 
-    public void setRespuestaUno(String respuestaUno) {
+    public void setRespuestaUno(Respuesta respuestaUno) {
         this.respuestaUno = respuestaUno;
     }
 
-    public void setRespuestaDos(String respuestaDos) {
+    public void setRespuestaDos(Respuesta respuestaDos) {
         this.respuestaDos = respuestaDos;
     }
 
-    public void setRespuestaTres(String respuestaTres) {
+    public void setRespuestaTres(Respuesta respuestaTres) {
         this.respuestaTres = respuestaTres;
     }
 
-    public void setRespuestaCuatro(String respuestaCuatro) {
+    public void setRespuestaCuatro(Respuesta respuestaCuatro) {
         this.respuestaCuatro = respuestaCuatro;
     }
-    //</editor-fold>
+
+    public void setRespuestaCorrecta(Respuesta respuestaCorrecta) {
+        this.respuestaCorrecta = respuestaCorrecta;
+    }
+    
+    
+    
+    
 }

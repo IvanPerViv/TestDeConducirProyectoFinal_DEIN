@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,7 +16,8 @@ import java.util.Collections;
  */
 public class ConexionBBDD {
 
-    protected String queryPreguntas = "SELECT * FROM respuestas";
+    protected String queryPreguntas = "SELECT * FROM preguntas";
+    protected String queryR = "SELECT respuesta_uno,respuesta_dos,respuesta_tres,respuesta_correcta FROM respuesta inner join preguntas on id_respuestas = ";
     protected File archivoPreguntas;
 
     public ConexionBBDD(File archivoPreguntas) {
@@ -23,29 +26,45 @@ public class ConexionBBDD {
 
     public ArrayList<Pregunta> ConexionBBDD() {
         ArrayList<Pregunta> preguntas = new ArrayList();
-        ArrayList<Respuesta> respuestas = new ArrayList();
-
+        
         try (var con = DriverManager.getConnection("jdbc:sqlite:" + archivoPreguntas.getAbsolutePath())) {
-            System.out.println("Conexión con exito");
-            try (PreparedStatement psPreguntas = con.prepareStatement(queryPreguntas);
-                    ResultSet rs = psPreguntas.executeQuery()) {
+            System.out.println("¡Conexión con exito!");
+            try (var psPreguntas = con.createStatement()) {
 
+                // 1º CONSULTA PARA OBTENER LA PREGUNTA //
+                ResultSet rs = psPreguntas.executeQuery(queryPreguntas);
                 while (rs.next()) {
-                    preguntas.add(new Pregunta(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                    preguntas.add(new Pregunta(rs.getInt(1), rs.getString(2), null, null, null, null, null));
                 }
-                for (Pregunta pregunta : preguntas) {
+                for (Pregunta pr : preguntas) {
+                    ArrayList<Respuesta> respuestas = new ArrayList();
+                    // 2º CONSULTA PARA OBTENER LAS RESPUESTAS //
+                    rs = psPreguntas.executeQuery(queryR + pr.getId());
                     if (rs.next()) {
+                        respuestas.add(new Respuesta(rs.getString(1), false));
+                        respuestas.add(new Respuesta(rs.getString(2), false));
                         respuestas.add(new Respuesta(rs.getString(3), false));
-                        respuestas.add(new Respuesta(rs.getString(4), false));
-                        respuestas.add(new Respuesta(rs.getString(5), false));
-                        respuestas.add(new Respuesta(rs.getString(6), true));
+                        respuestas.add(new Respuesta(rs.getString(4), true));
                     }
+                    // LLAMADA AL METODO RANDOM -> Cambia el orden de las preguntas. //
+                    randomizadorDeRespuestas(respuestas);
+
+                    pr.setRespuestaUno(respuestas.get(0));
+                    pr.setRespuestaDos(respuestas.get(1));
+                    pr.setRespuestaTres(respuestas.get(2));
+                    pr.setRespuestaCuatro(respuestas.get(3));
                 }
-                rs.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionBBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return preguntas;
+    }
+
+    public void randomizadorDeRespuestas(ArrayList<Respuesta> lista) {
+        Collections.shuffle(lista);
     }
 }

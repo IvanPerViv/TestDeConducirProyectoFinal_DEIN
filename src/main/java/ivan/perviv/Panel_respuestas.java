@@ -3,6 +3,7 @@ package ivan.perviv;
 import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.*;
 
 /**
@@ -15,8 +16,8 @@ public class Panel_respuestas extends JFrame {
     protected ConexionBBDD con;
 
     protected ArrayList<Pregunta> listapreguntas;
-    protected int numeroPregunta = 0;
-    
+    protected int contadorPregunta = 0;
+
     public Panel_respuestas(Image imagenIconito, File archivoPreguntas) {
 
         this.imagenIconito = imagenIconito;
@@ -25,22 +26,32 @@ public class Panel_respuestas extends JFrame {
         initComponents();
         setLocationRelativeTo(null);
 
-        ////// DEVUELVE LAS PREGUNTAS ///////
+        // DEVUELVE LAS PREGUNTAS //
         con = new ConexionBBDD(archivoPreguntas);
         listapreguntas = con.ConexionBBDD();
-        escribirPyR();
+
+        // RANDOMIZAR LAS PREGUNTAS //
+        Collections.shuffle(listapreguntas);
+        escrituraPreguntasRespuestas();
 
     }
 
-    public void escribirPyR() {
-        Pregunta preg = listapreguntas.get(numeroPregunta);
-        numPregunta.setText(String.valueOf(numeroPregunta + 1));
-        preguntaTest.setText("<html>" + preg.getPregunta() + "</html>");
+    public void escrituraPreguntasRespuestas() {
+        Pregunta preg = listapreguntas.get(contadorPregunta);
+        numPregunta.setText(String.valueOf(contadorPregunta + 1));
+        preguntaTest.setText(preg.getPregunta());
+
+        respUno.setText(preg.getRespuestaUno().getTextoRespuesta());
+        respDos.setText(preg.getRespuestaDos().getTextoRespuesta());
+        respTres.setText(preg.getRespuestaTres().getTextoRespuesta());
+        respCuatro.setText(preg.getRespuestaCuatro().getTextoRespuesta());
+
         
-        respUno.setText("<html>" + preg.getRespuestaUno() + "</html>");
-        respDos.setText("<html>" + preg.getRespuestaDos() + "</html>");
-        respTres.setText("<html>" + preg.getRespuestaTres() + "</html>");
-        respCuatro.setText("<html>" + preg.getRespuestaCuatro() + "</html>");
+        if (contadorPregunta + 1 == listapreguntas.size()) {
+            botonSiguiente.setText("Finalizar");
+        } else {
+            botonSiguiente.setText("Siguiente");
+        }
 
     }
 
@@ -112,6 +123,11 @@ public class Panel_respuestas extends JFrame {
 
         botonSiguiente.setText("SIGUIENTE");
         botonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSiguienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 140, 50));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -120,6 +136,17 @@ public class Panel_respuestas extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
+        // BOTON SIGUIENTE //
+        if (!botonSiguiente.getText().equals("Finalizar")) {
+            contadorPregunta++;
+            escrituraPreguntasRespuestas();
+        } else {
+            new Panel_resultados(0, listapreguntas.size()).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_botonSiguienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;

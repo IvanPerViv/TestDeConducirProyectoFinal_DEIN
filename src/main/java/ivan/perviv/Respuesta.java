@@ -1,13 +1,19 @@
 package ivan.perviv;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Iván Pérez
  */
-public class Respuesta {
+public class Respuesta implements Serializable{
 
     private boolean preguntaVerdadera;
     String textoRespuesta;
+
+    Respuesta() {
+
+    }
 
     public Respuesta(String textoRespuesta, boolean verdadero) {
         this.preguntaVerdadera = verdadero;
@@ -24,6 +30,7 @@ public class Respuesta {
     }
 //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="METODOS Setters">
+
     public void setVerdadero(boolean verdadero) {
         this.preguntaVerdadera = verdadero;
     }
