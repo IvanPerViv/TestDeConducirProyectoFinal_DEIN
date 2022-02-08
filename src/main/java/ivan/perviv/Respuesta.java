@@ -28,9 +28,8 @@ public class Respuesta implements Serializable{
     public String getTextoRespuesta() {
         return textoRespuesta;
     }
-//</editor-fold>
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="METODOS Setters">
-
     public void setVerdadero(boolean verdadero) {
         this.preguntaVerdadera = verdadero;
     }

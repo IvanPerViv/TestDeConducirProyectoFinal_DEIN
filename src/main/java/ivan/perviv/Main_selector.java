@@ -19,6 +19,7 @@ public class Main_selector extends JFrame {
         initComponents();
         imagenIconito = getIconImage();
         setLocationRelativeTo(null);
+        getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
     }
 
     @Override
@@ -43,6 +44,8 @@ public class Main_selector extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(0, 0));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(500, 250));
         setResizable(false);
 
         Titulo.setFont(new java.awt.Font("Felix Titling", 1, 26)); // NOI18N
@@ -130,7 +133,7 @@ public class Main_selector extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSelectorActionPerformed
-        ////// BOTON SELECTOR DE PREGUNTAS /////
+        // BOTON SELECTOR DE PREGUNTAS //
         JFileChooser fc = new JFileChooser();
         int numero = fc.showOpenDialog(this);
 
@@ -141,7 +144,7 @@ public class Main_selector extends JFrame {
     }//GEN-LAST:event_botonSelectorActionPerformed
 
     private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed
-        /////// BOTON EMPEZAR TEST ///////
+        // BOTON EMPEZAR TEST //
         if (archivoPreguntas != null) {
             new Panel_respuestas(imagenIconito, archivoPreguntas).setVisible(true);
             dispose();

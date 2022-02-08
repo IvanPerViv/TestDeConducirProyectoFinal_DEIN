@@ -1,14 +1,8 @@
 package ivan.perviv;
 
 import java.io.File;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
+import java.util.*;
 
 /**
  *
@@ -16,7 +10,7 @@ import java.util.logging.Logger;
  */
 public class ConexionBBDD {
 
-    protected String queryPreguntas = "SELECT * FROM preguntas";
+    protected String queryP = "SELECT * FROM preguntas";
     protected String queryR = "SELECT respuesta_uno,respuesta_dos,respuesta_tres,respuesta_correcta FROM respuesta inner join preguntas on id_respuestas = ";
     protected File archivoPreguntas;
 
@@ -32,12 +26,13 @@ public class ConexionBBDD {
             try (var psPreguntas = con.createStatement()) {
 
                 // 1º CONSULTA PARA OBTENER LA PREGUNTA //
-                ResultSet rs = psPreguntas.executeQuery(queryPreguntas);
+                ResultSet rs = psPreguntas.executeQuery(queryP);
                 while (rs.next()) {
                     preguntas.add(new Pregunta(rs.getInt(1), rs.getString(2), null, null, null, null, null));
                 }
                 for (Pregunta pr : preguntas) {
                     ArrayList<Respuesta> respuestas = new ArrayList();
+                    
                     // 2º CONSULTA PARA OBTENER LAS RESPUESTAS //
                     rs = psPreguntas.executeQuery(queryR + pr.getId());
                     if (rs.next()) {
@@ -59,7 +54,7 @@ public class ConexionBBDD {
                 e.printStackTrace();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionBBDD.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al establecer la conexión: " + ex.toString());
         }
         return preguntas;
     }

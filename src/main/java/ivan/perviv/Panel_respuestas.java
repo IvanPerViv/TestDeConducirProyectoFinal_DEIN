@@ -13,46 +13,79 @@ public class Panel_respuestas extends JFrame {
 
     protected Image imagenIconito;
     protected File archivoPreguntas;
-    protected ConexionBBDD con;
+    protected ConexionBBDD objetoConexion;
 
-    protected ArrayList<Pregunta> listapreguntas;
+    protected ArrayList<Pregunta> listaDePreguntas;
     protected int contadorPregunta = 0;
+    protected Respuesta[] respuestaGuardada;
+    Pregunta numeroPregunta;
 
     public Panel_respuestas(Image imagenIconito, File archivoPreguntas) {
-
         this.imagenIconito = imagenIconito;
         this.archivoPreguntas = archivoPreguntas;
 
         initComponents();
         setLocationRelativeTo(null);
+        getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
 
-        // DEVUELVE LAS PREGUNTAS //
-        con = new ConexionBBDD(archivoPreguntas);
-        listapreguntas = con.ConexionBBDD();
+        objetoConexion = new ConexionBBDD(archivoPreguntas);
+
+        // DEVUELVE LAS PREGUNTAS - las guardamos en un lista //
+        listaDePreguntas = objetoConexion.ConexionBBDD();
+        respuestaGuardada = new Respuesta[listaDePreguntas.size()];
 
         // RANDOMIZAR LAS PREGUNTAS //
-        Collections.shuffle(listapreguntas);
+        randomizadorDeRespuestas(listaDePreguntas);
         escrituraPreguntasRespuestas();
-
+        
     }
 
+    /**
+     * Metodo que randomiza una Lista
+     *
+     * @param lista
+     */
+    public void randomizadorDeRespuestas(ArrayList<Pregunta> lista) {
+        Collections.shuffle(lista);
+    }
+
+    /**
+     * Metodo que escribe las preguntas y respuestas en pantalla, ya
+     * randomizadas,
+     */
     public void escrituraPreguntasRespuestas() {
-        Pregunta preg = listapreguntas.get(contadorPregunta);
+        Pregunta objPregunta = listaDePreguntas.get(contadorPregunta);
         numPregunta.setText(String.valueOf(contadorPregunta + 1));
-        preguntaTest.setText(preg.getPregunta());
+        preguntaTest.setText(objPregunta.getPregunta());
 
-        respUno.setText(preg.getRespuestaUno().getTextoRespuesta());
-        respDos.setText(preg.getRespuestaDos().getTextoRespuesta());
-        respTres.setText(preg.getRespuestaTres().getTextoRespuesta());
-        respCuatro.setText(preg.getRespuestaCuatro().getTextoRespuesta());
+        respUno.setText(objPregunta.getRespuestaUno().getTextoRespuesta());
+        respDos.setText(objPregunta.getRespuestaDos().getTextoRespuesta());
+        respTres.setText(objPregunta.getRespuestaTres().getTextoRespuesta());
+        respCuatro.setText(objPregunta.getRespuestaCuatro().getTextoRespuesta());
 
-        
-        if (contadorPregunta + 1 == listapreguntas.size()) {
-            botonSiguiente.setText("Finalizar");
-        } else {
-            botonSiguiente.setText("Siguiente");
+        if (respuestaGuardada[contadorPregunta] != null) {
+            Respuesta respuesta = respuestaGuardada[contadorPregunta];
+            String valor = respuesta.getTextoRespuesta();
+
+            if (respUno.getText().equals(valor)) {
+                respUno.setSelected(true);
+            } else if (respDos.getText().equals(valor)) {
+                respDos.setSelected(true);
+            } else if (respTres.getText().equals(valor)) {
+                respTres.setSelected(true);
+            } else if (respTres.getText().equals(valor)) {
+                respTres.setSelected(true);
+            }
         }
 
+        if (contadorPregunta + 1 != listaDePreguntas.size()) {
+            botonSiguiente.setText("SIGUIENTE");
+        } else {
+            botonSiguiente.setText("FINALIZAR");
+        }
+        
+        //Actualizamos el numero de preguntas y que se vaya guardando.
+        numeroPregunta = listaDePreguntas.get(contadorPregunta);
     }
 
     @SuppressWarnings("unchecked")
@@ -74,7 +107,10 @@ public class Panel_respuestas extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(imagenIconito);
-        setMaximumSize(null);
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(0, 0));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(550, 490));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -96,29 +132,54 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respUno);
         respUno.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         respUno.setText("Respuesta 1");
+        respUno.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                respUnoStateChanged(evt);
+            }
+        });
         getContentPane().add(respUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 390, -1));
         buttonGroupRespuestas.add(respUno);
 
         buttonGroupRespuestas.add(respDos);
         respDos.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         respDos.setText("Respuesta 2");
+        respDos.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                respDosStateChanged(evt);
+            }
+        });
         getContentPane().add(respDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 390, -1));
         buttonGroupRespuestas.add(respDos);
 
         buttonGroupRespuestas.add(respTres);
         respTres.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         respTres.setText("Respuesta 3");
+        respTres.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                respTresStateChanged(evt);
+            }
+        });
         getContentPane().add(respTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 390, -1));
         buttonGroupRespuestas.add(respTres);
 
         buttonGroupRespuestas.add(respCuatro);
         respCuatro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         respCuatro.setText("Respuesta 4");
+        respCuatro.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                respCuatroStateChanged(evt);
+            }
+        });
         getContentPane().add(respCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 390, -1));
         buttonGroupRespuestas.add(respCuatro);
 
         botonAtras.setText("ATRAS");
         botonAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAtrasActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 130, 50));
 
         botonSiguiente.setText("SIGUIENTE");
@@ -139,15 +200,64 @@ public class Panel_respuestas extends JFrame {
 
     private void botonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSiguienteActionPerformed
         // BOTON SIGUIENTE //
-        if (!botonSiguiente.getText().equals("Finalizar")) {
+        int numeroDeAciertos = 0;
+        if (botonSiguiente.getText().equals("FINALIZAR")) {
+            int resultado = JOptionPane.showConfirmDialog(this, "¿Quieres finalizar el examen?", "Advertencia", JOptionPane.YES_OPTION);
+            if (resultado == 0) {
+                for (Respuesta respuesta : respuestaGuardada) {
+                    if (respuesta != null) {
+                        if (respuesta.isVerdadero()) {
+                            numeroDeAciertos++;
+                        }
+                    }
+                }
+                new Panel_resultados(numeroDeAciertos, listaDePreguntas.size()).setVisible(true);
+                dispose();
+            }
+        } else {
             contadorPregunta++;
             escrituraPreguntasRespuestas();
-        } else {
-            new Panel_resultados(0, listapreguntas.size()).setVisible(true);
-            dispose();
         }
     }//GEN-LAST:event_botonSiguienteActionPerformed
 
+    private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
+        // BOTON ANTERIOR //
+        if (contadorPregunta > 0) {
+            contadorPregunta--;
+            escrituraPreguntasRespuestas();
+        }
+    }//GEN-LAST:event_botonAtrasActionPerformed
+    
+    /**
+     * METODOS en el cual guardamos en el array la respuesta de cada una de las preguntas.
+     * @param evt 
+     */
+    //<editor-fold defaultstate="collapsed" desc="METODOS STATES DEL FORMULARIO">
+    private void respUnoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respUnoStateChanged
+        if (respUno.isSelected()) {
+            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaUno;
+        }
+    }//GEN-LAST:event_respUnoStateChanged
+
+    private void respDosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respDosStateChanged
+        if (respDos.isSelected()) {
+            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaDos;
+        }
+    }//GEN-LAST:event_respDosStateChanged
+
+    private void respTresStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respTresStateChanged
+        if (respTres.isSelected()) {
+            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaTres;
+        }
+    }//GEN-LAST:event_respTresStateChanged
+
+    private void respCuatroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respCuatroStateChanged
+        if (respCuatro.isSelected()) {
+            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaCuatro;
+        }
+    }//GEN-LAST:event_respCuatroStateChanged
+//</editor-fold>
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonSiguiente;

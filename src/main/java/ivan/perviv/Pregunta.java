@@ -12,6 +12,9 @@ public class Pregunta implements Serializable {
     protected String pregunta;
     protected Respuesta respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, respuestaCorrecta;
 
+    public Pregunta (){
+    }
+    
     public Pregunta(int id, String pregunta, Respuesta respuestaUno, Respuesta respuestaDos, Respuesta respuestaTres, Respuesta respuestaCuatro, Respuesta respuestaCorrecta) {
         this.id = id;
         this.pregunta = pregunta;
@@ -21,7 +24,8 @@ public class Pregunta implements Serializable {
         this.respuestaCuatro = respuestaCuatro;
         this.respuestaCorrecta = respuestaCorrecta;
     }
-
+    
+    //<editor-fold defaultstate="collapsed" desc="METODOS Getters">
     public int getId() {
         return id;
     }
@@ -49,7 +53,8 @@ public class Pregunta implements Serializable {
     public Respuesta getRespuestaCorrecta() {
         return respuestaCorrecta;
     }
-
+    //</editor-fold> 
+    //<editor-fold defaultstate="collapsed" desc="METODOS Setters"> 
     public void setId(int id) {
         this.id = id;
     }
@@ -77,8 +82,5 @@ public class Pregunta implements Serializable {
     public void setRespuestaCorrecta(Respuesta respuestaCorrecta) {
         this.respuestaCorrecta = respuestaCorrecta;
     }
-    
-    
-    
-    
+   //</editor-fold>  
 }
