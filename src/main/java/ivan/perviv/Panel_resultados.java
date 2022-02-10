@@ -15,7 +15,8 @@ public class Panel_resultados extends JFrame {
     protected String aprobado;
     protected int numeroDeAciertos, cantidadPreguntas;
 
-    public Panel_resultados(Image imagenIconito, int numeroDeAciertos, int cantidadDePreguntas) {
+    public Panel_resultados(String titulo, Image imagenIconito, int numeroDeAciertos, int cantidadDePreguntas) {
+        super(titulo);
         this.imagenIconito = imagenIconito;
         this.numeroDeAciertos = numeroDeAciertos;
         cantidadPreguntas = cantidadDePreguntas;

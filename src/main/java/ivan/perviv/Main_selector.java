@@ -15,7 +15,8 @@ public class Main_selector extends JFrame {
     protected Image imagenIconito;
     protected File archivoPreguntas;
 
-    public Main_selector() {
+    public Main_selector(String titulo) {
+        super(titulo);
         initComponents();
         imagenIconito = getIconImage();
         setLocationRelativeTo(null);
@@ -33,19 +34,21 @@ public class Main_selector extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
         Titulo = new javax.swing.JLabel();
         botonSelector = new javax.swing.JButton();
         botonEmpezar = new javax.swing.JButton();
         botonAyuda = new javax.swing.JButton();
         jIcon = new javax.swing.JLabel();
         jIcon2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(0, 0));
+        setMinimumSize(new java.awt.Dimension(0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(500, 250));
+        setPreferredSize(new java.awt.Dimension(355, 480));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -53,11 +56,11 @@ public class Main_selector extends JFrame {
             }
         });
 
-        Titulo.setFont(new java.awt.Font("Felix Titling", 1, 26)); // NOI18N
+        Titulo.setFont(new java.awt.Font("Rockwell", 0, 36)); // NOI18N
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo.setText("TEST DE CONDUCIR MANOLIN.");
+        Titulo.setText("Autoescuela");
 
-        botonSelector.setFont(new java.awt.Font("Perpetua", 1, 16)); // NOI18N
+        botonSelector.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         botonSelector.setText("Elegir preguntas...");
         botonSelector.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonSelector.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -67,7 +70,7 @@ public class Main_selector extends JFrame {
             }
         });
 
-        botonEmpezar.setFont(new java.awt.Font("Perpetua", 1, 16)); // NOI18N
+        botonEmpezar.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         botonEmpezar.setText("Empezar");
         botonEmpezar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonEmpezar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -85,51 +88,54 @@ public class Main_selector extends JFrame {
 
         jIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main_selector/play.png"))); // NOI18N
 
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main_selector/logo.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                            .addComponent(jSeparator1))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jIcon)
+                                .addGap(10, 10, 10)
+                                .addComponent(botonSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jIcon2)
+                                .addGap(10, 10, 10)
+                                .addComponent(botonEmpezar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonAyuda)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Titulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jIcon)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jIcon2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonEmpezar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(146, 146, 146))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botonAyuda)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Titulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jIcon)
                     .addComponent(botonSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jIcon2)
                     .addComponent(botonEmpezar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(60, 60, 60)
                 .addComponent(botonAyuda)
                 .addContainerGap())
         );
@@ -151,7 +157,7 @@ public class Main_selector extends JFrame {
     private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed
         // BOTON EMPEZAR TEST //
         if (archivoPreguntas != null) {
-            new Panel_respuestas(imagenIconito, archivoPreguntas).setVisible(true);
+            new Panel_respuestas("IP",imagenIconito, archivoPreguntas).setVisible(true);
             dispose();
         } else {
             JOptionPane.showConfirmDialog(this, "No has cogido las preguntas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -185,7 +191,7 @@ public class Main_selector extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main_selector().setVisible(true);
+                new Main_selector("IP").setVisible(true);
             }
         });
     }
@@ -198,5 +204,6 @@ public class Main_selector extends JFrame {
     private javax.swing.JLabel jIcon;
     private javax.swing.JLabel jIcon2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logo;
     // End of variables declaration//GEN-END:variables
 }
