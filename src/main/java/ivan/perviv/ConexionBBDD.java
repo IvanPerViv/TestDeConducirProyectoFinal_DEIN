@@ -21,18 +21,18 @@ public class ConexionBBDD {
     public ArrayList<Pregunta> ConexionBBDD() {
         ArrayList<Pregunta> preguntas = new ArrayList();
         
-        try (var con = DriverManager.getConnection("jdbc:sqlite:" + archivoPreguntas.getAbsolutePath())) {
+        try ( var con = DriverManager.getConnection("jdbc:sqlite:" + archivoPreguntas.getAbsolutePath())) {
             System.out.println("¡Conexión con exito!");
-            try (var psPreguntas = con.createStatement()) {
+            try ( var psPreguntas = con.createStatement()) {
 
                 // 1º CONSULTA PARA OBTENER LA PREGUNTA //
                 ResultSet rs = psPreguntas.executeQuery(queryP);
                 while (rs.next()) {
-                    preguntas.add(new Pregunta(rs.getInt(1), rs.getString(2), null, null, null, null, null));
+                    preguntas.add(new Pregunta(rs.getInt(1), rs.getString(2), rs.getString(3),null, null, null, null, null));
                 }
                 for (Pregunta pr : preguntas) {
                     ArrayList<Respuesta> respuestas = new ArrayList();
-                    
+
                     // 2º CONSULTA PARA OBTENER LAS RESPUESTAS //
                     rs = psPreguntas.executeQuery(queryR + pr.getId());
                     if (rs.next()) {
@@ -62,4 +62,20 @@ public class ConexionBBDD {
     public void randomizadorDeRespuestas(ArrayList<Respuesta> lista) {
         Collections.shuffle(lista);
     }
+
+//    public ArrayList<Imagen> imagenesBBDD() {
+//        ArrayList<Imagen> imagenes = new ArrayList();
+//        try ( var con = DriverManager.getConnection("jdbc:sqlite:" + archivoPreguntas.getAbsolutePath())) {
+//            try ( var psImagenes = con.createStatement()) {
+//                ResultSet rs = psImagenes.executeQuery(queryP);
+//                while (rs.next()) {
+//                    imagenes.add(new Imagen(rs.getInt(1), rs.getString(3)));
+//                }
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.err.println("Error al establecer la conexión: " + ex.toString());
+//        }
+//        return imagenes;
+//    }
 }

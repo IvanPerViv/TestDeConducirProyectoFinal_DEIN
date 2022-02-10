@@ -47,6 +47,11 @@ public class Main_selector extends JFrame {
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(500, 250));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Titulo.setFont(new java.awt.Font("Felix Titling", 1, 26)); // NOI18N
         Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -152,6 +157,18 @@ public class Main_selector extends JFrame {
             JOptionPane.showConfirmDialog(this, "No has cogido las preguntas", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_botonEmpezarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       for (double i = 0.0; i <= 1.0; i = i + 0.1) {
+            String val = i + "F";
+            float f = Float.valueOf(val);
+            this.setOpacity(f);
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

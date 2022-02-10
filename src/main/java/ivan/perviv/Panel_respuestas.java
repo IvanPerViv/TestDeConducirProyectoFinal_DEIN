@@ -1,7 +1,9 @@
 package ivan.perviv;
 
+import com.sun.tools.javac.Main;
 import java.awt.Image;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
@@ -18,7 +20,7 @@ public class Panel_respuestas extends JFrame {
     protected ArrayList<Pregunta> listaDePreguntas;
     protected int contadorPregunta = 0;
     protected Respuesta[] respuestaGuardada;
-    Pregunta numeroPregunta;
+    protected Pregunta objPregunta;
 
     public Panel_respuestas(Image imagenIconito, File archivoPreguntas) {
         this.imagenIconito = imagenIconito;
@@ -37,7 +39,7 @@ public class Panel_respuestas extends JFrame {
         // RANDOMIZAR LAS PREGUNTAS //
         randomizadorDeRespuestas(listaDePreguntas);
         escrituraPreguntasRespuestas();
-        
+
     }
 
     /**
@@ -63,6 +65,9 @@ public class Panel_respuestas extends JFrame {
         respTres.setText(objPregunta.getRespuestaTres().getTextoRespuesta());
         respCuatro.setText(objPregunta.getRespuestaCuatro().getTextoRespuesta());
 
+        // pinta las imagenes para cada pregunta //
+        pintarImagenes(objPregunta);
+        
         if (respuestaGuardada[contadorPregunta] != null) {
             Respuesta respuesta = respuestaGuardada[contadorPregunta];
             String valor = respuesta.getTextoRespuesta();
@@ -83,9 +88,18 @@ public class Panel_respuestas extends JFrame {
         } else {
             botonSiguiente.setText("FINALIZAR");
         }
-        
+
         //Actualizamos el numero de preguntas y que se vaya guardando.
-        numeroPregunta = listaDePreguntas.get(contadorPregunta);
+        this.objPregunta = listaDePreguntas.get(contadorPregunta);
+    }
+    
+    /**
+     * Metodo que pinta las imagenes para cada pregunta
+     * @param preguntilla 
+     */
+    public void pintarImagenes (Pregunta preguntilla){
+        URL imageResource = Main.class.getClassLoader().getResource("Panel_respuestas/"+preguntilla.getImagen());
+        foto.setIcon(new ImageIcon(imageResource));
     }
 
     @SuppressWarnings("unchecked")
@@ -93,7 +107,13 @@ public class Panel_respuestas extends JFrame {
     private void initComponents() {
 
         buttonGroupRespuestas = new javax.swing.ButtonGroup();
+        panelMenu = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        titulo1 = new javax.swing.JLabel();
+        titulo2 = new javax.swing.JLabel();
+        panelFoto = new javax.swing.JPanel();
+        foto = new javax.swing.JLabel();
         numPregunta = new javax.swing.JLabel();
         preguntaTest = new javax.swing.JLabel();
         respUno = new javax.swing.JRadioButton();
@@ -102,32 +122,57 @@ public class Panel_respuestas extends JFrame {
         respCuatro = new javax.swing.JRadioButton();
         botonAtras = new javax.swing.JButton();
         botonSiguiente = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(imagenIconito);
         setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(0, 0));
+        setMinimumSize(new java.awt.Dimension(780, 530));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(550, 490));
+        setPreferredSize(new java.awt.Dimension(780, 530));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titulo.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("PREGUNTAS");
-        getContentPane().add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 520, 50));
+        panelMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(160, 160, 160)));
+        panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        titulo.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        titulo.setText("Examen basico.");
+        panelMenu.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 170, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/dgt.png"))); // NOI18N
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        panelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 260, 50));
+
+        titulo1.setFont(new java.awt.Font("Agency FB", 1, 48)); // NOI18N
+        titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo1.setText("PREGUNTAS");
+        panelMenu.add(titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 310, 70));
+
+        titulo2.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
+        titulo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        titulo2.setText("TEST DE CONDUCIR");
+        panelMenu.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 170, 40));
+
+        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 800, 70));
+
+        panelFoto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        foto.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), java.awt.Color.darkGray));
+        panelFoto.add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 260));
+
+        getContentPane().add(panelFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 280, 460));
 
         numPregunta.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         numPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numPregunta.setText("1");
-        numPregunta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 90, 80));
+        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 50));
 
         preguntaTest.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         preguntaTest.setText("PREGUNTA DEL TEST DE CONDUCIR");
-        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 380, 80));
+        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 410, 80));
 
         buttonGroupRespuestas.add(respUno);
         respUno.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -137,7 +182,7 @@ public class Panel_respuestas extends JFrame {
                 respUnoStateChanged(evt);
             }
         });
-        getContentPane().add(respUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 390, -1));
+        getContentPane().add(respUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 390, -1));
         buttonGroupRespuestas.add(respUno);
 
         buttonGroupRespuestas.add(respDos);
@@ -148,7 +193,7 @@ public class Panel_respuestas extends JFrame {
                 respDosStateChanged(evt);
             }
         });
-        getContentPane().add(respDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 390, -1));
+        getContentPane().add(respDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 390, -1));
         buttonGroupRespuestas.add(respDos);
 
         buttonGroupRespuestas.add(respTres);
@@ -159,7 +204,7 @@ public class Panel_respuestas extends JFrame {
                 respTresStateChanged(evt);
             }
         });
-        getContentPane().add(respTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 390, -1));
+        getContentPane().add(respTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 390, -1));
         buttonGroupRespuestas.add(respTres);
 
         buttonGroupRespuestas.add(respCuatro);
@@ -170,7 +215,7 @@ public class Panel_respuestas extends JFrame {
                 respCuatroStateChanged(evt);
             }
         });
-        getContentPane().add(respCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 390, -1));
+        getContentPane().add(respCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 390, -1));
         buttonGroupRespuestas.add(respCuatro);
 
         botonAtras.setText("ATRAS");
@@ -180,7 +225,7 @@ public class Panel_respuestas extends JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 130, 50));
+        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 130, 50));
 
         botonSiguiente.setText("SIGUIENTE");
         botonSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -189,11 +234,10 @@ public class Panel_respuestas extends JFrame {
                 botonSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 140, 50));
+        getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 140, 50));
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 22, 80));
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 500, 10));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 22, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,7 +255,7 @@ public class Panel_respuestas extends JFrame {
                         }
                     }
                 }
-                new Panel_resultados(numeroDeAciertos, listaDePreguntas.size()).setVisible(true);
+                new Panel_resultados(imagenIconito, numeroDeAciertos, listaDePreguntas.size()).setVisible(true);
                 dispose();
             }
         } else {
@@ -227,49 +271,54 @@ public class Panel_respuestas extends JFrame {
             escrituraPreguntasRespuestas();
         }
     }//GEN-LAST:event_botonAtrasActionPerformed
-    
+
     /**
-     * METODOS en el cual guardamos en el array la respuesta de cada una de las preguntas.
-     * @param evt 
+     * METODOS en el cual guardamos en el array la respuesta de cada una de las
+     * preguntas.
      */
     //<editor-fold defaultstate="collapsed" desc="METODOS STATES DEL FORMULARIO">
     private void respUnoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respUnoStateChanged
         if (respUno.isSelected()) {
-            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaUno;
+            respuestaGuardada[contadorPregunta] = objPregunta.respuestaUno;
         }
     }//GEN-LAST:event_respUnoStateChanged
 
     private void respDosStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respDosStateChanged
         if (respDos.isSelected()) {
-            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaDos;
+            respuestaGuardada[contadorPregunta] = objPregunta.respuestaDos;
         }
     }//GEN-LAST:event_respDosStateChanged
 
     private void respTresStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respTresStateChanged
         if (respTres.isSelected()) {
-            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaTres;
+            respuestaGuardada[contadorPregunta] = objPregunta.respuestaTres;
         }
     }//GEN-LAST:event_respTresStateChanged
 
     private void respCuatroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respCuatroStateChanged
         if (respCuatro.isSelected()) {
-            respuestaGuardada[contadorPregunta] = numeroPregunta.respuestaCuatro;
+            respuestaGuardada[contadorPregunta] = objPregunta.respuestaCuatro;
         }
     }//GEN-LAST:event_respCuatroStateChanged
 //</editor-fold>
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonSiguiente;
     private javax.swing.ButtonGroup buttonGroupRespuestas;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel foto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel numPregunta;
+    private javax.swing.JPanel panelFoto;
+    private javax.swing.JPanel panelMenu;
     private javax.swing.JLabel preguntaTest;
     private javax.swing.JRadioButton respCuatro;
     private javax.swing.JRadioButton respDos;
     private javax.swing.JRadioButton respTres;
     private javax.swing.JRadioButton respUno;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo1;
+    private javax.swing.JLabel titulo2;
     // End of variables declaration//GEN-END:variables
 }

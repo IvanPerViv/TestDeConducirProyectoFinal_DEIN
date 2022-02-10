@@ -9,22 +9,23 @@ import java.io.Serializable;
 public class Pregunta implements Serializable {
 
     protected int id;
-    protected String pregunta;
+    protected String pregunta, imagenPregunta;
     protected Respuesta respuestaUno, respuestaDos, respuestaTres, respuestaCuatro, respuestaCorrecta;
 
-    public Pregunta (){
+    public Pregunta() {
     }
-    
-    public Pregunta(int id, String pregunta, Respuesta respuestaUno, Respuesta respuestaDos, Respuesta respuestaTres, Respuesta respuestaCuatro, Respuesta respuestaCorrecta) {
+
+    public Pregunta(int id, String pregunta, String imagen, Respuesta respuestaUno, Respuesta respuestaDos, Respuesta respuestaTres, Respuesta respuestaCuatro, Respuesta respuestaCorrecta) {
         this.id = id;
         this.pregunta = pregunta;
+        this.imagenPregunta = imagen;
         this.respuestaUno = respuestaUno;
         this.respuestaDos = respuestaDos;
         this.respuestaTres = respuestaTres;
         this.respuestaCuatro = respuestaCuatro;
         this.respuestaCorrecta = respuestaCorrecta;
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="METODOS Getters">
     public int getId() {
         return id;
@@ -32,6 +33,10 @@ public class Pregunta implements Serializable {
 
     public String getPregunta() {
         return pregunta;
+    }
+
+    public String getImagen() {
+        return imagenPregunta;
     }
 
     public Respuesta getRespuestaUno() {
@@ -53,6 +58,7 @@ public class Pregunta implements Serializable {
     public Respuesta getRespuestaCorrecta() {
         return respuestaCorrecta;
     }
+
     //</editor-fold> 
     //<editor-fold defaultstate="collapsed" desc="METODOS Setters"> 
     public void setId(int id) {
@@ -61,6 +67,10 @@ public class Pregunta implements Serializable {
 
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagenPregunta = imagen;
     }
 
     public void setRespuestaUno(Respuesta respuestaUno) {
@@ -82,5 +92,5 @@ public class Pregunta implements Serializable {
     public void setRespuestaCorrecta(Respuesta respuestaCorrecta) {
         this.respuestaCorrecta = respuestaCorrecta;
     }
-   //</editor-fold>  
+    //</editor-fold>  
 }
