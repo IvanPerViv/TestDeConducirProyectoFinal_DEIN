@@ -13,11 +13,10 @@ import javax.swing.*;
 public class Panel_resultados extends JFrame {
 
     protected Image imagenIconito;
-    protected String aprobado;
     protected int numeroDeAciertos, cantidadPreguntas;
-    ArrayList<Pregunta> listaDePreguntas;
+    protected ArrayList<Pregunta> listaDePreguntas;
 
-    public Panel_resultados(String titulo, Image imagenIconito, int numeroDeAciertos, int cantidadDePreguntas, ArrayList<Pregunta> p ){
+    public Panel_resultados(String titulo, Image imagenIconito, int numeroDeAciertos, int cantidadDePreguntas, ArrayList<Pregunta> p) {
         super(titulo);
         this.imagenIconito = imagenIconito;
         this.numeroDeAciertos = numeroDeAciertos;
@@ -30,28 +29,28 @@ public class Panel_resultados extends JFrame {
 
         if (numeroDeAciertos >= (cantidadPreguntas - 3)) {
             jLabel1.setText("¡APROBADO!");
-            aprobado = "Aprobado";
+            imagenAprobado();
         } else {
             jLabel1.setText("¡SUSPENSO!");
+            imagenSuspenso();
         }
-        imagenAprobadoSuspenso();
         jLabel2.setText(numeroDeAciertos + "/" + cantidadPreguntas);
         for (int i = 0; i < listaDePreguntas.size(); i++) {
-            jTabbedPane1.addTab(Integer.toString(i+1),new respuestaFinal(listaDePreguntas.get(i)));
+            jTabbedPane1.addTab(Integer.toString(i + 1), new respuestaFinal(listaDePreguntas.get(i)));
         }
     }
 
     /*
     * Inserta una imagen en el Label en el cual varia si apruebas o suspendes
      */
-    private void imagenAprobadoSuspenso() {
-        if (aprobado.equals("Aprobado")) {
-            URL imageResource = Main.class.getClassLoader().getResource("Panel_resultados/aprobado.png");
-            imagenAprobadoSuspenso.setIcon(new ImageIcon(imageResource));
-        } else {
-            URL imageResource = Main.class.getClassLoader().getResource("Panel_resultados/suspenso.png");
-            imagenAprobadoSuspenso.setIcon(new ImageIcon(imageResource));
-        }
+    private void imagenAprobado() {
+        URL imageResource = Main.class.getClassLoader().getResource("Panel_resultados/aprobado.png");
+        imagenAprobadoSuspenso.setIcon(new ImageIcon(imageResource));
+    }
+
+    private void imagenSuspenso() {
+        URL imageResource = Main.class.getClassLoader().getResource("Panel_resultados/suspenso.png");
+        imagenAprobadoSuspenso.setIcon(new ImageIcon(imageResource));
     }
 
     @SuppressWarnings("unchecked")
