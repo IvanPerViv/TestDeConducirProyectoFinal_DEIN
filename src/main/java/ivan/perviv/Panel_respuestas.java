@@ -167,8 +167,9 @@ public class Panel_respuestas extends JFrame {
         getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 50, 50));
 
         preguntaTest.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        preguntaTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         preguntaTest.setText("PREGUNTA DEL TEST DE CONDUCIR");
-        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 410, 80));
+        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 410, 70));
 
         buttonGroupRespuestas.add(respUno);
         respUno.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -244,12 +245,12 @@ public class Panel_respuestas extends JFrame {
         getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 140, 110));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 22, 480));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 22, 470));
 
         labelSiguiente.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         labelSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSiguiente.setText("SIGUIENTE");
-        getContentPane().add(labelSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 530, 90, 30));
+        getContentPane().add(labelSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 530, 100, 30));
 
         labelAnterior.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         labelAnterior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -257,7 +258,7 @@ public class Panel_respuestas extends JFrame {
         getContentPane().add(labelAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 90, 30));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 20, 120));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 20, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -275,7 +276,7 @@ public class Panel_respuestas extends JFrame {
                         }
                     }
                 }
-                new Panel_resultados("IP", imagenIconito, numeroDeAciertos, listaDePreguntas.size()).setVisible(true);
+                new Panel_resultados("IP", imagenIconito, numeroDeAciertos, listaDePreguntas.size(), listaDePreguntas).setVisible(true);
                 dispose();
             }
         } else {
