@@ -59,12 +59,12 @@ public class Panel_respuestas extends JFrame {
     public void escrituraPreguntasRespuestas() {
         Pregunta objPregunta = listaDePreguntas.get(contadorPregunta);
         numPregunta.setText(String.valueOf(contadorPregunta + 1)+".");
-        preguntaTest.setText(objPregunta.getPregunta());
+        preguntaTest.setText("<html><h3>"+objPregunta.getPregunta()+ "</h3></html>");
 
-        respUno.setText(objPregunta.getRespuestaUno().getTextoRespuesta());
-        respDos.setText(objPregunta.getRespuestaDos().getTextoRespuesta());
-        respTres.setText(objPregunta.getRespuestaTres().getTextoRespuesta());
-        respCuatro.setText(objPregunta.getRespuestaCuatro().getTextoRespuesta());
+        respUno.setText("<html><p>" +objPregunta.getRespuestaUno().getTextoRespuesta()+ "</p></html>");
+        respDos.setText("<html><p>" +objPregunta.getRespuestaDos().getTextoRespuesta()+ "</p></html>");
+        respTres.setText("<html><p>" +objPregunta.getRespuestaTres().getTextoRespuesta()+ "</p></html>");
+        respCuatro.setText("<html><p>" +objPregunta.getRespuestaCuatro().getTextoRespuesta()+ "</p></html>");
 
         // pinta las imagenes para cada pregunta //
         pintarImagenes(objPregunta);
@@ -165,55 +165,55 @@ public class Panel_respuestas extends JFrame {
         numPregunta.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         numPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numPregunta.setText("1");
-        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 50, 50));
+        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 70, 70));
 
-        preguntaTest.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        preguntaTest.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
         preguntaTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        preguntaTest.setText("PREGUNTA DEL TEST DE CONDUCIR");
-        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 450, 70));
+        preguntaTest.setText("<Pregunta Del Test De Conducir>");
+        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 450, 70));
 
         buttonGroupRespuestas.add(respUno);
-        respUno.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        respUno.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respUno.setText("Respuesta 1");
         respUno.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respUnoStateChanged(evt);
             }
         });
-        getContentPane().add(respUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 420, 40));
+        getContentPane().add(respUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 420, 40));
         buttonGroupRespuestas.add(respUno);
 
         buttonGroupRespuestas.add(respDos);
-        respDos.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        respDos.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respDos.setText("Respuesta 2");
         respDos.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respDosStateChanged(evt);
             }
         });
-        getContentPane().add(respDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 420, 40));
+        getContentPane().add(respDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 420, 40));
         buttonGroupRespuestas.add(respDos);
 
         buttonGroupRespuestas.add(respTres);
-        respTres.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        respTres.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respTres.setText("Respuesta 3");
         respTres.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respTresStateChanged(evt);
             }
         });
-        getContentPane().add(respTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 420, 40));
+        getContentPane().add(respTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 420, 40));
         buttonGroupRespuestas.add(respTres);
 
         buttonGroupRespuestas.add(respCuatro);
-        respCuatro.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        respCuatro.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respCuatro.setText("Respuesta 4");
         respCuatro.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respCuatroStateChanged(evt);
             }
         });
-        getContentPane().add(respCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 420, 40));
+        getContentPane().add(respCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 420, 40));
         buttonGroupRespuestas.add(respCuatro);
 
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/izquierda.png"))); // NOI18N

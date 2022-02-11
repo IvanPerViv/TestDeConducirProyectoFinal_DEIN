@@ -47,7 +47,6 @@ public class Main_selector extends JFrame {
         setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(355, 480));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -148,22 +147,22 @@ public class Main_selector extends JFrame {
 
         if (numero == JFileChooser.APPROVE_OPTION) {
             archivoPreguntas = fc.getSelectedFile();
-            JOptionPane.showMessageDialog(this, "Archivo cargado.");
+            JOptionPane.showMessageDialog(this,"Base de datos cargada.","¡Enhorabuena!",JOptionPane.PLAIN_MESSAGE);;
         }
     }//GEN-LAST:event_botonSelectorActionPerformed
 
     private void botonEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmpezarActionPerformed
         // BOTON EMPEZAR TEST //
         if (archivoPreguntas != null) {
-            new Panel_respuestas("IP",imagenIconito, archivoPreguntas).setVisible(true);
+            new Panel_respuestas("IP", imagenIconito, archivoPreguntas).setVisible(true);
             dispose();
         } else {
-            JOptionPane.showConfirmDialog(this, "No has cogido las preguntas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "¡No has cogido las preguntas!", "Advertencia", JOptionPane.QUESTION_MESSAGE);
         }
     }//GEN-LAST:event_botonEmpezarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       for (double i = 0.0; i <= 1.0; i = i + 0.1) {
+        for (double i = 0.0; i <= 1.0; i = i + 0.1) {
             String val = i + "F";
             float f = Float.valueOf(val);
             this.setOpacity(f);
