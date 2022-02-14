@@ -45,7 +45,6 @@ public class Main_selector extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
-        setMaximumSize(new java.awt.Dimension(0, 0));
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -147,7 +146,7 @@ public class Main_selector extends JFrame {
 
         if (numero == JFileChooser.APPROVE_OPTION) {
             archivoPreguntas = fc.getSelectedFile();
-            JOptionPane.showMessageDialog(this,"Base de datos cargada.","¡Enhorabuena!",JOptionPane.PLAIN_MESSAGE);;
+            JOptionPane.showMessageDialog(this, "Base de datos cargada.", "¡Enhorabuena!", JOptionPane.PLAIN_MESSAGE);;
         }
     }//GEN-LAST:event_botonSelectorActionPerformed
 

@@ -146,11 +146,11 @@ public class Panel_respuestas extends JFrame {
 
         titulo2.setFont(new java.awt.Font("Rockwell", 2, 16)); // NOI18N
         titulo2.setText("TEST DE CONDUCIR      -Test basico-");
-        panelMenu.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 270, 30));
+        panelMenu.add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 270, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/dgt.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        panelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 270, 30));
+        panelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, 30));
 
         getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 940, 70));
 
@@ -165,16 +165,17 @@ public class Panel_respuestas extends JFrame {
         numPregunta.setFont(new java.awt.Font("Rockwell", 1, 36)); // NOI18N
         numPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numPregunta.setText("1");
-        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 70, 70));
+        getContentPane().add(numPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 70, 80));
 
         preguntaTest.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
         preguntaTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         preguntaTest.setText("<Pregunta Del Test De Conducir>");
-        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 450, 70));
+        getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 450, 80));
 
         buttonGroupRespuestas.add(respUno);
         respUno.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respUno.setText("Respuesta 1");
+        respUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respUno.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respUnoStateChanged(evt);
@@ -186,6 +187,7 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respDos);
         respDos.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respDos.setText("Respuesta 2");
+        respDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respDos.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respDosStateChanged(evt);
@@ -197,6 +199,7 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respTres);
         respTres.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respTres.setText("Respuesta 3");
+        respTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respTres.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respTresStateChanged(evt);
@@ -208,6 +211,7 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respCuatro);
         respCuatro.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         respCuatro.setText("Respuesta 4");
+        respCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respCuatro.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 respCuatroStateChanged(evt);
@@ -229,7 +233,7 @@ public class Panel_respuestas extends JFrame {
                 botonAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 130, 110));
+        getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 130, 110));
 
         botonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/derecha.png"))); // NOI18N
         botonSiguiente.setToolTipText("Pregunta siguiente.");
@@ -243,23 +247,23 @@ public class Panel_respuestas extends JFrame {
                 botonSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, 140, 110));
+        getContentPane().add(botonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, 140, 110));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 22, 470));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 22, 480));
 
         labelSiguiente.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         labelSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSiguiente.setText("SIGUIENTE");
-        getContentPane().add(labelSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 530, 100, 30));
+        getContentPane().add(labelSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, 100, 30));
 
         labelAnterior.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
         labelAnterior.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelAnterior.setText("ANTERIOR");
-        getContentPane().add(labelAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 530, 90, 30));
+        getContentPane().add(labelAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 540, 90, 30));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 20, 130));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, 20, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -298,7 +302,6 @@ public class Panel_respuestas extends JFrame {
      * METODOS en el cual guardamos en el array la respuesta de cada una de las
      * preguntas.
      */
-    //<editor-fold defaultstate="collapsed" desc="METODOS STATES DEL FORMULARIO">
     private void respUnoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_respUnoStateChanged
         if (respUno.isSelected()) {
             respuestaGuardada[contadorPregunta] = objPregunta.respuestaUno;
@@ -322,7 +325,6 @@ public class Panel_respuestas extends JFrame {
             respuestaGuardada[contadorPregunta] = objPregunta.respuestaCuatro;
         }
     }//GEN-LAST:event_respCuatroStateChanged
-//</editor-fold>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;

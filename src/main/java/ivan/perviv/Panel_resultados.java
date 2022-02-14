@@ -17,19 +17,19 @@ public class Panel_resultados extends JFrame {
     protected String titulo;
     protected ArrayList<Pregunta> listaDePreguntas;
 
-    public Panel_resultados(String titulo, Image imagenIconito, int numeroDeAciertos, int cantidadDePreguntas, ArrayList<Pregunta> p) {
+    public Panel_resultados(String titulo, Image imagenIconito, int numeroDeAciertos, int numeroDePreguntas, ArrayList<Pregunta> p) {
         super(titulo);
         this.titulo = titulo;
         this.imagenIconito = imagenIconito;
         this.numeroDeAciertos = numeroDeAciertos;
-        cantidadPreguntas = cantidadDePreguntas;
+        cantidadPreguntas = numeroDePreguntas;
         listaDePreguntas = p;
 
         initComponents();
         setLocationRelativeTo(null);
         getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
 
-        resultado(numeroDeAciertos);
+        resultado(numeroDeAciertos,numeroDePreguntas);
         
         jLabel2.setText(numeroDeAciertos + "/" + cantidadPreguntas);
         for (int i = 0; i < listaDePreguntas.size(); i++) {
@@ -42,8 +42,8 @@ public class Panel_resultados extends JFrame {
      * @param aciertos numero total de aciertos coseguidos.
      * @param preguntas numero de preguntas
      */
-    public void resultado (int aciertos){
-        if (aciertos >= 5) {
+    public void resultado (int aciertos, int cantidadPreguntas){
+        if (aciertos >=(cantidadPreguntas - 3)) {
             jLabel1.setText("¡APROBADO!");
             imagenAprobado();
         } else {

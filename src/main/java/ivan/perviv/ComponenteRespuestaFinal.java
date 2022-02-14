@@ -3,6 +3,9 @@ package ivan.perviv;
 import java.io.Serializable;
 import javax.swing.*;
 
+/**
+ * @author Iván Pérez
+ */
 public class ComponenteRespuestaFinal extends JPanel implements Serializable {
 
     public ComponenteRespuestaFinal() {

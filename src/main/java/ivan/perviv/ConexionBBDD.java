@@ -62,20 +62,4 @@ public class ConexionBBDD {
     public void randomizadorDeRespuestas(ArrayList<Respuesta> lista) {
         Collections.shuffle(lista);
     }
-
-//    public ArrayList<Imagen> imagenesBBDD() {
-//        ArrayList<Imagen> imagenes = new ArrayList();
-//        try ( var con = DriverManager.getConnection("jdbc:sqlite:" + archivoPreguntas.getAbsolutePath())) {
-//            try ( var psImagenes = con.createStatement()) {
-//                ResultSet rs = psImagenes.executeQuery(queryP);
-//                while (rs.next()) {
-//                    imagenes.add(new Imagen(rs.getInt(1), rs.getString(3)));
-//                }
-//            }
-//
-//        } catch (SQLException ex) {
-//            System.err.println("Error al establecer la conexión: " + ex.toString());
-//        }
-//        return imagenes;
-//    }
 }
