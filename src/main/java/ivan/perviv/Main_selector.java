@@ -39,6 +39,9 @@ public class Main_selector extends JFrame {
         return iconito;
     }
 
+    /**
+     * Metodo que cambia el lookAndFeel de la aplicacion.
+     */
     public void modoOscurito() {
         tema = !tema;
 

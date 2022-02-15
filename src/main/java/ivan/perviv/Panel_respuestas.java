@@ -130,9 +130,7 @@ public class Panel_respuestas extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(imagenIconito);
         setLocationByPlatform(true);
-        setMaximumSize(null);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(910, 620));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -170,10 +168,12 @@ public class Panel_respuestas extends JFrame {
         preguntaTest.setFont(new java.awt.Font("Rockwell", 0, 16)); // NOI18N
         preguntaTest.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         preguntaTest.setText("<Pregunta Del Test De Conducir>");
+        preguntaTest.setToolTipText("");
         getContentPane().add(preguntaTest, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 450, 80));
 
         buttonGroupRespuestas.add(respUno);
         respUno.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        respUno.setMnemonic('1');
         respUno.setText("Respuesta 1");
         respUno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respUno.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -186,6 +186,7 @@ public class Panel_respuestas extends JFrame {
 
         buttonGroupRespuestas.add(respDos);
         respDos.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        respDos.setMnemonic('2');
         respDos.setText("Respuesta 2");
         respDos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respDos.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -198,6 +199,7 @@ public class Panel_respuestas extends JFrame {
 
         buttonGroupRespuestas.add(respTres);
         respTres.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        respTres.setMnemonic('3');
         respTres.setText("Respuesta 3");
         respTres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respTres.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -210,6 +212,7 @@ public class Panel_respuestas extends JFrame {
 
         buttonGroupRespuestas.add(respCuatro);
         respCuatro.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        respCuatro.setMnemonic('4');
         respCuatro.setText("Respuesta 4");
         respCuatro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         respCuatro.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -221,6 +224,7 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respCuatro);
 
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/izquierda.png"))); // NOI18N
+        botonAtras.setMnemonic(37);
         botonAtras.setToolTipText("Pregunta anterior.");
         botonAtras.setBorderPainted(false);
         botonAtras.setContentAreaFilled(false);
@@ -236,6 +240,7 @@ public class Panel_respuestas extends JFrame {
         getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 130, 110));
 
         botonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/derecha.png"))); // NOI18N
+        botonSiguiente.setMnemonic(39);
         botonSiguiente.setToolTipText("Pregunta siguiente.");
         botonSiguiente.setBorderPainted(false);
         botonSiguiente.setContentAreaFilled(false);
