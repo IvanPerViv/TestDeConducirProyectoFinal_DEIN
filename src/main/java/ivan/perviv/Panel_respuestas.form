@@ -272,7 +272,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Panel_respuestas/izquierda.png"/>
         </Property>
-        <Property name="mnemonic" type="int" value="37"/>
         <Property name="toolTipText" type="java.lang.String" value="Pregunta anterior."/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
@@ -303,7 +302,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Panel_respuestas/derecha.png"/>
         </Property>
-        <Property name="mnemonic" type="int" value="39"/>
         <Property name="toolTipText" type="java.lang.String" value="Pregunta siguiente."/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>

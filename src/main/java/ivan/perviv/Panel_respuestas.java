@@ -224,7 +224,6 @@ public class Panel_respuestas extends JFrame {
         buttonGroupRespuestas.add(respCuatro);
 
         botonAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/izquierda.png"))); // NOI18N
-        botonAtras.setMnemonic(37);
         botonAtras.setToolTipText("Pregunta anterior.");
         botonAtras.setBorderPainted(false);
         botonAtras.setContentAreaFilled(false);
@@ -240,7 +239,6 @@ public class Panel_respuestas extends JFrame {
         getContentPane().add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 130, 110));
 
         botonSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Panel_respuestas/derecha.png"))); // NOI18N
-        botonSiguiente.setMnemonic(39);
         botonSiguiente.setToolTipText("Pregunta siguiente.");
         botonSiguiente.setBorderPainted(false);
         botonSiguiente.setContentAreaFilled(false);
